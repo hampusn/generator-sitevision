@@ -1,0 +1,32 @@
+/**
+ * @file <%= name %> module
+ * @author <%= author.name %> <<%= author.email %>>
+ */
+
+/* globals request */
+/* exported context */
+
+<% if (vars) { -%>
+/**
+ * Contains configuration settings.
+ * @type {Object}
+ */
+const settings = {
+<% vars.forEach((v) => { -%>
+  <%= v %>: (scriptVariables.<%= v %> != null) ? scriptVariables.<%= v %> : null,
+<% }) -%>
+};
+
+<% } -%>
+/**
+ * Contains the main logic for this script module and 
+ * exports data into the context variable which will be 
+ * used in the velocity template.
+ * 
+ * @return {Object}
+ */
+const context = (function (request) {
+  // ...
+
+  return {};
+})(request);

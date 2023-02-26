@@ -1,0 +1,20 @@
+import * as React from 'react';
+<% if (styles) { -%>
+import styles from './<%- componentName %>.scss';
+<% } -%>
+
+export interface I<%- componentName %> {
+  name: string;
+}
+
+const <%- componentName %>: React.FunctionComponent<I<%- componentName %>> = ({ name }) => {
+  return (
+    <div<% if (styles) { -%> className={styles.root}<% } -%>>
+      {name}
+    </div>
+  );
+};
+
+// <%= componentName %>.displayName = '<%= componentName %>';
+
+export default <%- componentName %>;

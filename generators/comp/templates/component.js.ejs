@@ -1,0 +1,16 @@
+import * as React from 'react';
+<% if (styles) { -%>
+import styles from './<%- componentName %>.scss';
+<% } -%>
+
+const <%- componentName %> = ({ name }) => {
+  return (
+    <div<% if (styles) { -%> className={styles.root}<% } -%>>
+      {name}
+    </div>
+  );
+};
+
+<%= componentName %>.displayName = '<%= componentName %>';
+
+export default <%- componentName %>;
