@@ -40,7 +40,7 @@ export default class extends Generator {
       {
         type: 'confirm',
         name: 'useDefaultAuthor',
-        message: 'Use default author (resolved from .yo-sitevision.json/git config)?',
+        message: 'Use default author (resolved from .yo-sitevision.json)?',
       },
       {
         type: 'input',
