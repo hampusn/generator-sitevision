@@ -14,7 +14,7 @@ export default class extends Generator {
     setupDestinationRoot(this);
 
     this.argument('name', {
-      description: 'The name of script module.'
+      description: 'The name of the component. Will be converted to PascalCase for the file names.'
     });
 
     this.option('styles', {

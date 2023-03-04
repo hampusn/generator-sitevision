@@ -14,7 +14,7 @@ export default class extends Generator {
     setupDestinationRoot(this);
 
     this.argument('name', {
-      description: 'The name of script module. Will be lower-cased and hyphenated for the file names.'
+      description: 'The name of the script module. Will be lower-cased and hyphenated for the file names.'
     });
 
     this.option('styles', {
