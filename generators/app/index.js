@@ -2,12 +2,17 @@ import Generator from 'yeoman-generator';
 import { injectConf } from '../../lib/conf.js';
 import { COMPONENT_STRUCTURE_TYPE_DIRECTORY, COMPONENT_STRUCTURE_TYPE_FLAT, PROJECT_TYPE_OTHER, PROJECT_TYPE_RESTAPP, PROJECT_TYPE_WEBAPP, PROJECT_TYPE_WEBSITE } from '../../lib/const.js';
 import { fileContents, removeEmpty, parseJson } from '../../lib/utils.js';
+import table from '@klny/text-table';
 
 export default class extends Generator {
   constructor (args, opts) {
     super(args, opts);
 
-    this.desc('Available generators:\n* script - Generates files for a Sitevision script module.\n* comp   - Generates a React component for a Sitevision webapp.');
+    this.desc([
+      'Available generators:',
+      '* script - Generates files for a Sitevision script module.',
+      '* comp   - Generates a React component for a Sitevision webapp.',
+    ].join('\n'));
 
     this.config.save();
   }
@@ -67,7 +72,7 @@ export default class extends Generator {
       {
         type: 'input',
         name: 'sm.dir',
-        message: 'Directory to place script modules in relative to project root (e.g. "system/modules")',
+        message: 'Directory to place script modules in relative to project root (e.g. "files/modules")',
         when: ({ type }) => type === PROJECT_TYPE_WEBSITE,
         filter: (v) => String(v).trim(),
         default: stored.sm?.dir,
@@ -127,8 +132,19 @@ export default class extends Generator {
   }
 
   end () {
+    const configPath = this.destinationPath('.yo-rc.json');
+    const configExists = this.fs.exists(configPath);
+
     this.log.ok('Sitevision project setup complete');
-    this.log('Stored configuration in .yo-rc.json:');
-    this.log(this.config.getAll());
+
+    if (configExists) {
+      this.log.ok('Configuration stored');
+    } else {
+      this.log.error('Failed to store configuration')
+    }
+
+    const config = [...Object.entries(this.config.getAll())].map(([ key, value ]) => ({ key, value }));
+
+    this.log(table(configPath, config));
   }
 };

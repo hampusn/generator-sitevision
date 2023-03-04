@@ -15,6 +15,7 @@
   "author": "Hampus Nordin <nordin.hampus@gmail.com> (https://hampus.io/)",
   "license": "ISC",
   "dependencies": {
+    "@klny/text-table": "^1.0.2",
     "camelcase": "^7.0.1",
     "decamelize": "^6.0.0",
     "deepmerge": "^4.3.0",
