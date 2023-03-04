@@ -143,7 +143,8 @@ export default class extends Generator {
       this.log.error('Failed to store configuration')
     }
 
-    const config = [...Object.entries(this.config.getAll())].map(([ key, value ]) => ({ key, value }));
+    // TODO: Improve output in table. Currently prints deep object structures as [object Object].
+    const config = Object.entries(this.config.getAll()).map(([ key, value ]) => ({ key, value }));
 
     this.log(table(configPath, config));
   }
